@@ -3,6 +3,7 @@ package com.example.visma
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.visma.ui.main.MainFragment
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,6 +15,7 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.container, MainFragment.newInstance())
                 .commitNow()
         }
+        Timber.plant(Timber.DebugTree())
     }
 
 }
