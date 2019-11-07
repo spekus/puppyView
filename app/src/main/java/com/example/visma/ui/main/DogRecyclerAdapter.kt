@@ -7,8 +7,6 @@ import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.visma.R
-import com.example.visma.model.Dogs
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.dog_item_row.view.*
 import timber.log.Timber
 
