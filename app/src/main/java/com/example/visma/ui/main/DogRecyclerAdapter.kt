@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.visma.R
 import com.example.visma.model.Dogs
 import com.squareup.picasso.Picasso
@@ -45,7 +46,7 @@ class DogRecyclerAdapter(private val imageUrls: List<String>) :
 
         fun bindImage(imageUrl: String) {
             this.imageUrl = imageUrl
-            Picasso.with(view.context)
+            Glide.with(view.context)
                 .load(imageUrl)
                 .placeholder(R.drawable.progress_bar)
                 .into(view.dog_picture)
