@@ -3,21 +3,20 @@ package com.example.visma.ui.main
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.visma.R
+import com.stfalcon.imageviewer.StfalconImageViewer
 import kotlinx.android.synthetic.main.dog_item_row.view.*
-import timber.log.Timber
 
 class DogRecyclerAdapter(private val imageUrls: List<String>) :
     RecyclerView.Adapter<DogRecyclerAdapter.ImageHolder>() {
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ImageHolder {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageHolder {
         val inflatedView = parent.inflate(R.layout.dog_item_row)
-        return ImageHolder(inflatedView)
+        return ImageHolder(inflatedView, imageUrls)
     }
 
     override fun getItemCount(): Int {
@@ -30,7 +29,8 @@ class DogRecyclerAdapter(private val imageUrls: List<String>) :
     }
 
 
-    class ImageHolder(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener {
+    class ImageHolder(v: View, val imageUrls: List<String>) : RecyclerView.ViewHolder(v),
+        View.OnClickListener {
         private var view: View = v
         private var imageUrl: String? = null
 
@@ -39,7 +39,17 @@ class DogRecyclerAdapter(private val imageUrls: List<String>) :
         }
 
         override fun onClick(v: View) {
-            Timber.d("Clicked on image!")
+            StfalconImageViewer.Builder<String>(view.context, imageUrls, ::loadImage)
+                .withStartPosition(imageUrls.indexOf(imageUrl))
+                .show()
+        }
+
+        private fun loadImage(imageView: ImageView, url: String) {
+            imageView.apply {
+                Glide.with(view.context)
+                    .load(url)
+                    .into(imageView)
+            }
         }
 
         fun bindImage(imageUrl: String) {
@@ -50,7 +60,6 @@ class DogRecyclerAdapter(private val imageUrls: List<String>) :
                 .into(view.dog_picture)
         }
     }
-
 }
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
