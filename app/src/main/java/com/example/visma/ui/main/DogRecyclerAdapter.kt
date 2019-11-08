@@ -1,11 +1,14 @@
 package com.example.visma.ui.main
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.example.visma.R
 import com.stfalcon.imageviewer.StfalconImageViewer
@@ -19,6 +22,8 @@ class DogRecyclerAdapter() :
     fun refreshList(newImageUrls: List<String>) {
         imageUrls.clear()
         imageUrls.addAll(newImageUrls)
+        // this is not efficient, but in this app there is no actual data change after initial loading
+        // so it should not be a problem
         notifyDataSetChanged()
     }
 
