@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.visma.database.DogsRepository
+import com.example.visma.data.DogsRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -29,7 +29,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         viewModelJob.cancel()
     }
 
-
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
@@ -39,5 +38,4 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             throw IllegalArgumentException("Unable to construct viewmodel")
         }
     }
-
 }

@@ -11,8 +11,16 @@ import com.example.visma.R
 import com.stfalcon.imageviewer.StfalconImageViewer
 import kotlinx.android.synthetic.main.dog_item_row.view.*
 
-class DogRecyclerAdapter(private val imageUrls: List<String>) :
+class DogRecyclerAdapter() :
     RecyclerView.Adapter<DogRecyclerAdapter.ImageHolder>() {
+
+    val imageUrls  = mutableListOf<String>()
+
+    fun refreshList(newImageUrls: List<String>) {
+        imageUrls.clear()
+        imageUrls.addAll(newImageUrls)
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageHolder {
         val inflatedView = parent.inflate(R.layout.dog_item_row)
