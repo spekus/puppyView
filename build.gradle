@@ -10,6 +10,7 @@ buildscript {
         version_lifecycle = '2.1.0'
         version_image_viewer = '0.1.0'
         version_gson = '2.8.6'
+        version_material_design = '1.0.0'
     }
     repositories {
         google()
